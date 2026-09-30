@@ -13,17 +13,41 @@
 
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
             background: #0b1120;
             color: #e5e7eb;
         }
 
-        .header {
-            height: 70px;
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .app {
+            min-height: 100vh;
+        }
+
+        /* --------------------------------------------------
+           Header
+        -------------------------------------------------- */
+
+        .topbar {
+            height: 68px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 32px;
+            padding: 0 28px;
             background: #111827;
             border-bottom: 1px solid #1f2937;
         }
@@ -31,31 +55,29 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
         }
 
         .brand-icon {
-            width: 38px;
-            height: 38px;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
+            background: #1d4ed8;
+            font-weight: 800;
         }
 
-        .brand h1 {
-            margin: 0;
+        .brand-title {
             font-size: 18px;
+            font-weight: 700;
         }
 
-        .brand p {
-            margin: 4px 0 0;
+        .brand-subtitle {
+            font-size: 11px;
             color: #6b7280;
-            font-size: 12px;
+            margin-top: 2px;
         }
 
         .system-status {
@@ -73,273 +95,717 @@
             background: #22c55e;
         }
 
-        .main {
+        /* --------------------------------------------------
+           Main
+        -------------------------------------------------- */
+
+        .container {
             max-width: 1500px;
-            margin: auto;
-            padding: 30px 32px 50px;
+            margin: 0 auto;
+            padding: 28px;
         }
 
         .incident-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 24px;
+            gap: 20px;
+            margin-bottom: 22px;
         }
 
-        .incident-title h2 {
+        .incident-title h1 {
             margin: 0;
-            font-size: 26px;
+            font-size: 28px;
+            color: #f9fafb;
         }
 
-        .incident-title p {
-            margin: 6px 0 0;
-            color: #9ca3af;
+        .incident-id {
+            margin-top: 7px;
+            color: #6b7280;
+            font-family: Consolas, monospace;
+            font-size: 13px;
         }
 
-        .badges {
+        .header-badges {
             display: flex;
+            align-items: flex-start;
             gap: 10px;
         }
 
         .badge {
-            padding: 7px 13px;
+            padding: 7px 12px;
             border-radius: 6px;
             font-size: 12px;
-            font-weight: bold;
+            font-weight: 700;
+            border: 1px solid transparent;
         }
 
         .badge-high {
-            background: #7f1d1d;
-            color: #fecaca;
+            background: #451a03;
+            color: #fb923c;
+            border-color: #7c2d12;
         }
 
-        .badge-status {
-            background: #1e3a8a;
-            color: #bfdbfe;
+        .badge-detected {
+            background: #172554;
+            color: #60a5fa;
+            border-color: #1e40af;
         }
 
-        .metrics {
+        .badge-green {
+            background: #052e16;
+            color: #4ade80;
+            border-color: #166534;
+        }
+
+        /* --------------------------------------------------
+           Summary cards
+        -------------------------------------------------- */
+
+        .summary-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin-bottom: 22px;
+            gap: 14px;
+            margin-bottom: 24px;
         }
 
-        .card {
+        .summary-card {
             background: #111827;
             border: 1px solid #1f2937;
             border-radius: 10px;
-            padding: 22px;
+            padding: 18px;
         }
 
-        .metric-label {
+        .summary-label {
             color: #6b7280;
-            font-size: 11px;
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 0.7px;
+            letter-spacing: 0.05em;
         }
 
-        .metric-value {
-            margin-top: 9px;
+        .summary-value {
+            margin-top: 8px;
             font-size: 19px;
-            font-weight: bold;
+            font-weight: 700;
+            color: #f9fafb;
         }
+
+        .summary-value.mono {
+            font-family: Consolas, monospace;
+            font-size: 15px;
+        }
+
+        /* --------------------------------------------------
+           Sections
+        -------------------------------------------------- */
 
         .section {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
             margin-bottom: 22px;
+            overflow: hidden;
         }
 
         .section-header {
+            padding: 17px 20px;
+            border-bottom: 1px solid #1f2937;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
         }
 
-        .section-header h3 {
-            margin: 0;
-            font-size: 16px;
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #f9fafb;
         }
 
-        .section-header span {
-            color: #6b7280;
+        .section-meta {
             font-size: 12px;
+            color: #6b7280;
         }
+
+        .section-body {
+            padding: 20px;
+        }
+
+        /* --------------------------------------------------
+           Two-column layouts
+        -------------------------------------------------- */
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        /* --------------------------------------------------
+           Timeline
+        -------------------------------------------------- */
 
         .timeline {
-            position: relative;
-            padding-left: 25px;
-        }
-
-        .timeline::before {
-            content: "";
-            position: absolute;
-            left: 7px;
-            top: 5px;
-            bottom: 5px;
-            width: 2px;
-            background: #374151;
+            display: flex;
+            flex-direction: column;
         }
 
         .timeline-item {
-            position: relative;
-            padding: 0 0 24px 20px;
-        }
-
-        .timeline-item:last-child {
-            padding-bottom: 0;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: -22px;
-            top: 4px;
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            background: #2563eb;
-            border: 2px solid #0b1120;
+            display: grid;
+            grid-template-columns: 115px 22px 1fr;
+            gap: 12px;
+            min-height: 78px;
         }
 
         .timeline-time {
-            color: #60a5fa;
+            font-family: Consolas, monospace;
             font-size: 12px;
-            font-weight: bold;
+            color: #6b7280;
+            padding-top: 2px;
         }
 
-        .timeline-event {
-            margin-top: 4px;
-            font-weight: bold;
+        .timeline-marker {
+            position: relative;
         }
 
-        .timeline-description {
-            margin-top: 4px;
-            color: #9ca3af;
+        .timeline-marker::before {
+            content: "";
+            position: absolute;
+            top: 4px;
+            left: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #2563eb;
+            border: 2px solid #1e3a8a;
+        }
+
+        .timeline-marker::after {
+            content: "";
+            position: absolute;
+            top: 16px;
+            bottom: -8px;
+            left: 10px;
+            width: 1px;
+            background: #374151;
+        }
+
+        .timeline-item:last-child .timeline-marker::after {
+            display: none;
+        }
+
+        .event-type {
+            color: #60a5fa;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .event-description {
+            margin-top: 5px;
+            color: #d1d5db;
             font-size: 13px;
+            line-height: 1.5;
         }
 
-        .detections {
+        .event-host {
+            margin-top: 5px;
+            font-family: Consolas, monospace;
+            color: #6b7280;
+            font-size: 11px;
+        }
+
+        /* --------------------------------------------------
+           Detection cards
+        -------------------------------------------------- */
+
+        .detection-list {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
 
         .detection {
-            display: grid;
-            grid-template-columns: 100px 1fr auto;
-            align-items: center;
-            gap: 15px;
+            border: 1px solid #374151;
+            border-radius: 8px;
             padding: 14px;
-            border: 1px solid #1f2937;
-            border-radius: 7px;
             background: #0f172a;
         }
 
-        .detection-severity {
-            font-size: 11px;
-            font-weight: bold;
-        }
-
-        .critical {
-            color: #f87171;
-        }
-
-        .high {
-            color: #fb923c;
-        }
-
-        .medium {
-            color: #facc15;
+        .detection-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
         }
 
         .detection-name {
-            font-weight: bold;
+            font-size: 13px;
+            font-weight: 700;
+            color: #f9fafb;
+        }
+
+        .severity {
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 7px;
+            border-radius: 4px;
+        }
+
+        .severity-critical {
+            background: #450a0a;
+            color: #f87171;
+        }
+
+        .severity-high {
+            background: #451a03;
+            color: #fb923c;
+        }
+
+        .severity-medium {
+            background: #422006;
+            color: #facc15;
         }
 
         .detection-description {
-            margin-top: 4px;
+            margin-top: 8px;
             color: #9ca3af;
             font-size: 12px;
+            line-height: 1.5;
         }
 
-        .event-id {
+        .detection-event {
+            margin-top: 8px;
+            font-family: Consolas, monospace;
             color: #6b7280;
-            font-size: 11px;
+            font-size: 10px;
         }
+
+        /* --------------------------------------------------
+           Attack chain
+        -------------------------------------------------- */
 
         .attack-chain {
             display: flex;
-            align-items: center;
+            align-items: stretch;
+            gap: 0;
             overflow-x: auto;
-            padding: 10px 0;
+            padding-bottom: 6px;
         }
 
         .attack-stage {
-            min-width: 155px;
-            padding: 15px;
+            min-width: 180px;
             background: #0f172a;
-            border: 1px solid #263244;
-            border-radius: 8px;
+            border: 1px solid #374151;
+            padding: 14px;
+        }
+
+        .attack-stage:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+
+        .attack-stage:last-child {
+            border-radius: 0 8px 8px 0;
         }
 
         .stage-number {
             color: #60a5fa;
+            font-family: Consolas, monospace;
             font-size: 11px;
-            font-weight: bold;
         }
 
         .stage-name {
             margin-top: 7px;
+            color: #f9fafb;
             font-size: 13px;
-            font-weight: bold;
+            font-weight: 700;
         }
 
-        .stage-arrow {
-            padding: 0 10px;
-            color: #4b5563;
-            font-size: 20px;
+        .stage-event {
+            margin-top: 8px;
+            color: #6b7280;
+            font-family: Consolas, monospace;
+            font-size: 10px;
         }
 
-        .loading {
-            padding: 60px;
-            text-align: center;
+        .confidence {
+            margin-top: 15px;
             color: #9ca3af;
+            font-size: 12px;
         }
 
-        .error {
-            padding: 20px;
-            border: 1px solid #7f1d1d;
-            background: #450a0a;
+        .confidence strong {
+            color: #fbbf24;
+        }
+
+        /* --------------------------------------------------
+           Investigation
+        -------------------------------------------------- */
+
+        .investigation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .control-card {
+            background: #0f172a;
+            border: 1px solid #374151;
             border-radius: 8px;
-            color: #fecaca;
+            padding: 18px;
         }
 
-        @media (max-width: 900px) {
-            .metrics {
+        .control-card h3 {
+            margin: 0 0 6px;
+            font-size: 14px;
+            color: #f9fafb;
+        }
+
+        .control-description {
+            color: #6b7280;
+            font-size: 11px;
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            color: #9ca3af;
+            font-size: 11px;
+            margin-bottom: 6px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid #374151;
+            background: #111827;
+            color: #e5e7eb;
+            border-radius: 6px;
+            padding: 10px 11px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #2563eb;
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .form-group {
+            margin-bottom: 13px;
+        }
+
+        .button {
+            border: 0;
+            border-radius: 6px;
+            padding: 10px 14px;
+            color: white;
+            background: #2563eb;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .button:hover {
+            background: #1d4ed8;
+        }
+
+        .button-danger {
+            background: #b91c1c;
+        }
+
+        .button-danger:hover {
+            background: #991b1b;
+        }
+
+        .button-secondary {
+            background: #374151;
+        }
+
+        .button-secondary:hover {
+            background: #4b5563;
+        }
+
+        .form-message {
+            display: none;
+            margin-top: 10px;
+            padding: 9px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+        }
+
+        .form-message.success {
+            display: block;
+            background: #052e16;
+            color: #86efac;
+            border: 1px solid #166534;
+        }
+
+        .form-message.error {
+            display: block;
+            background: #450a0a;
+            color: #fca5a5;
+            border: 1px solid #991b1b;
+        }
+
+        /* --------------------------------------------------
+           Investigation status
+        -------------------------------------------------- */
+
+        .current-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: #111827;
+            border: 1px solid #374151;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .current-status-label {
+            color: #6b7280;
+            font-size: 11px;
+        }
+
+        .current-status-value {
+            color: #60a5fa;
+            font-weight: 800;
+            font-size: 12px;
+        }
+
+        /* --------------------------------------------------
+           Findings / actions
+        -------------------------------------------------- */
+
+        .record-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .record {
+            border: 1px solid #374151;
+            background: #111827;
+            border-radius: 6px;
+            padding: 11px;
+        }
+
+        .record-label {
+            font-size: 10px;
+            color: #6b7280;
+            text-transform: uppercase;
+        }
+
+        .record-value {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #d1d5db;
+            line-height: 1.5;
+        }
+
+        .action-record {
+            display: grid;
+            grid-template-columns: 115px 1fr;
+            gap: 10px;
+        }
+
+        .action-type {
+            color: #60a5fa;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .action-details {
+            color: #d1d5db;
+            font-size: 12px;
+        }
+
+        .action-meta {
+            margin-top: 5px;
+            color: #6b7280;
+            font-size: 10px;
+        }
+
+        .empty-state {
+            padding: 20px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 12px;
+            border: 1px dashed #374151;
+            border-radius: 6px;
+        }
+
+        /* --------------------------------------------------
+           Incident Report
+        -------------------------------------------------- */
+
+        .report-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .report-stat {
+            background: #0f172a;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            padding: 14px;
+        }
+
+        .report-stat-label {
+            color: #6b7280;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .report-stat-value {
+            margin-top: 7px;
+            color: #f9fafb;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .report-stat-value.mono {
+            font-family: Consolas, monospace;
+        }
+
+        .report-block {
+            background: #0f172a;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+
+        .report-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .report-block-title {
+            color: #f9fafb;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 10px;
+        }
+
+        .report-summary {
+            color: #d1d5db;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .report-two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .report-list {
+            margin: 0;
+            padding-left: 18px;
+            color: #d1d5db;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .report-list li {
+            margin-bottom: 5px;
+        }
+
+        .report-empty {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .report-footer {
+            margin-top: 14px;
+            color: #6b7280;
+            font-family: Consolas, monospace;
+            font-size: 10px;
+        }
+
+        /* --------------------------------------------------
+           Footer
+        -------------------------------------------------- */
+
+        .footer {
+            padding: 20px 0 35px;
+            text-align: center;
+            color: #4b5563;
+            font-size: 11px;
+        }
+
+        /* --------------------------------------------------
+           Responsive
+        -------------------------------------------------- */
+
+        @media (max-width: 1000px) {
+
+            .summary-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .two-column,
+            .investigation-grid,
+            .report-two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .report-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .container {
+                padding: 16px;
+            }
+
+            .topbar {
+                padding: 0 16px;
             }
 
             .incident-header {
                 flex-direction: column;
-                gap: 15px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .header {
-                padding: 0 16px;
             }
 
-            .main {
-                padding: 20px 16px;
-            }
-
-            .metrics {
+            .summary-grid,
+            .report-grid {
                 grid-template-columns: 1fr;
             }
 
-            .detection {
-                grid-template-columns: 1fr;
+            .timeline-item {
+                grid-template-columns: 85px 22px 1fr;
+            }
+
+            .brand-subtitle,
+            .system-status {
+                display: none;
+            }
+
+            .section-header {
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .report-header-actions {
+                flex-direction: column;
+                align-items: flex-end;
             }
         }
     </style>
@@ -347,120 +813,156 @@
 
 <body>
 
-<header class="header">
+<div class="app">
 
-    <div class="brand">
+    <!-- ==================================================
+         HEADER
+    =================================================== -->
 
-        <div class="brand-icon">C</div>
+    <header class="topbar">
 
-        <div>
-            <h1>Cyber Incident Command Center</h1>
-            <p>Security Operations & Incident Response</p>
+        <div class="brand">
+
+            <div class="brand-icon">
+                SOC
+            </div>
+
+            <div>
+
+                <div class="brand-title">
+                    Cyber Incident Command Center
+                </div>
+
+                <div class="brand-subtitle">
+                    Defensive Incident Response Simulator
+                </div>
+
+            </div>
+
         </div>
 
-    </div>
+        <div class="system-status">
 
-    <div class="system-status">
-        <span class="status-dot"></span>
-        Simulator Operational
-    </div>
+            <span class="status-dot"></span>
 
-</header>
+            Simulation Environment Online
 
+        </div>
 
-<main class="main">
-
-    <div id="loading" class="loading">
-        Loading incident data...
-    </div>
+    </header>
 
 
-    <div id="content" style="display: none;">
+    <!-- ==================================================
+         MAIN
+    =================================================== -->
 
-        <!-- INCIDENT -->
+    <main class="container">
+
+        <!-- Incident heading -->
 
         <div class="incident-header">
 
             <div class="incident-title">
 
-                <h2 id="incident-name"></h2>
+                <h1 id="incident-name">
+                    Loading incident...
+                </h1>
 
-                <p id="incident-id"></p>
+                <div
+                    class="incident-id"
+                    id="incident-id"
+                >
+                    --
+                </div>
 
             </div>
 
-            <div class="badges">
+            <div class="header-badges">
 
-                <span
-                    id="severity"
-                    class="badge badge-high">
-                </span>
+                <div
+                    id="severity-badge"
+                    class="badge badge-high"
+                >
+                    --
+                </div>
 
-                <span
-                    id="status"
-                    class="badge badge-status">
-                </span>
+                <div
+                    id="incident-status-badge"
+                    class="badge badge-detected"
+                >
+                    --
+                </div>
 
             </div>
 
         </div>
 
 
-        <!-- METRICS -->
+        <!-- ==================================================
+             SUMMARY
+        =================================================== -->
 
-        <div class="metrics">
+        <div class="summary-grid">
 
-            <div class="card">
+            <div class="summary-card">
 
-                <div class="metric-label">
+                <div class="summary-label">
                     Affected Host
                 </div>
 
                 <div
+                    class="summary-value mono"
                     id="affected-host"
-                    class="metric-value">
+                >
+                    --
                 </div>
 
             </div>
 
 
-            <div class="card">
+            <div class="summary-card">
 
-                <div class="metric-label">
+                <div class="summary-label">
                     Affected User
                 </div>
 
                 <div
+                    class="summary-value mono"
                     id="affected-user"
-                    class="metric-value">
+                >
+                    --
                 </div>
 
             </div>
 
 
-            <div class="card">
+            <div class="summary-card">
 
-                <div class="metric-label">
+                <div class="summary-label">
                     Security Events
                 </div>
 
                 <div
+                    class="summary-value"
                     id="event-count"
-                    class="metric-value">
+                >
+                    --
                 </div>
 
             </div>
 
 
-            <div class="card">
+            <div class="summary-card">
 
-                <div class="metric-label">
+                <div class="summary-label">
                     Detections
                 </div>
 
                 <div
+                    class="summary-value"
                     id="detection-count"
-                    class="metric-value">
+                >
+                    --
                 </div>
 
             </div>
@@ -468,25 +970,38 @@
         </div>
 
 
-        <!-- TIMELINE -->
+        <!-- ==================================================
+             EVENT TIMELINE
+        =================================================== -->
 
         <section class="section">
 
             <div class="section-header">
 
-                <h3>Incident Timeline</h3>
+                <div class="section-title">
+                    Security Event Timeline
+                </div>
 
-                <span>
-                    Chronological security events
-                </span>
+                <div
+                    class="section-meta"
+                    id="timeline-meta"
+                >
+                    Loading...
+                </div>
 
             </div>
 
-            <div class="card">
+            <div class="section-body">
 
                 <div
+                    class="timeline"
                     id="timeline"
-                    class="timeline">
+                >
+
+                    <div class="empty-state">
+                        Loading events...
+                    </div>
+
                 </div>
 
             </div>
@@ -494,25 +1009,369 @@
         </section>
 
 
-        <!-- DETECTIONS -->
+        <!-- ==================================================
+             DETECTIONS + ATTACK CHAIN
+        =================================================== -->
+
+        <div class="two-column">
+
+            <!-- Detections -->
+
+            <section class="section">
+
+                <div class="section-header">
+
+                    <div class="section-title">
+                        Detection Findings
+                    </div>
+
+                    <div
+                        class="section-meta"
+                        id="detection-meta"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+                <div class="section-body">
+
+                    <div
+                        class="detection-list"
+                        id="detections"
+                    >
+
+                        <div class="empty-state">
+                            Loading detections...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Attack Chain -->
+
+            <section class="section">
+
+                <div class="section-header">
+
+                    <div class="section-title">
+                        Correlated Attack Chain
+                    </div>
+
+                    <div
+                        class="section-meta"
+                        id="correlation-meta"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+                <div class="section-body">
+
+                    <div
+                        class="attack-chain"
+                        id="attack-chain"
+                    >
+
+                        <div class="empty-state">
+                            Loading attack chain...
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="confidence"
+                        id="confidence"
+                    >
+                        Correlation confidence:
+                        <strong>--</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- ==================================================
+             INVESTIGATION & RESPONSE
+        =================================================== -->
 
         <section class="section">
 
             <div class="section-header">
 
-                <h3>Security Detections</h3>
+                <div class="section-title">
+                    Investigation & Response
+                </div>
 
-                <span>
-                    Detection engine output
-                </span>
+                <div class="section-meta">
+                    Analyst Operations
+                </div>
 
             </div>
 
-            <div class="card">
+            <div class="section-body">
 
-                <div
-                    id="detections"
-                    class="detections">
+                <div class="investigation-grid">
+
+                    <!-- STATUS -->
+
+                    <div class="control-card">
+
+                        <h3>
+                            Investigation Status
+                        </h3>
+
+                        <div class="control-description">
+                            Progress the incident through the
+                            incident-response lifecycle.
+                        </div>
+
+                        <div class="current-status">
+
+                            <div class="current-status-label">
+                                Current Status
+                            </div>
+
+                            <div
+                                class="current-status-value"
+                                id="investigation-status"
+                            >
+                                --
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="status-select">
+                                New Status
+                            </label>
+
+                            <select id="status-select">
+
+                                <option value="DETECTED">
+                                    DETECTED
+                                </option>
+
+                                <option value="TRIAGED">
+                                    TRIAGED
+                                </option>
+
+                                <option value="INVESTIGATING">
+                                    INVESTIGATING
+                                </option>
+
+                                <option value="CONTAINMENT">
+                                    CONTAINMENT
+                                </option>
+
+                                <option value="ERADICATION">
+                                    ERADICATION
+                                </option>
+
+                                <option value="RECOVERY">
+                                    RECOVERY
+                                </option>
+
+                                <option value="CLOSED">
+                                    CLOSED
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <button
+                            class="button"
+                            onclick="updateInvestigationStatus()"
+                        >
+                            Update Status
+                        </button>
+
+                        <div
+                            id="status-message"
+                            class="form-message"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- FINDING -->
+
+                    <div class="control-card">
+
+                        <h3>
+                            Add Investigation Finding
+                        </h3>
+
+                        <div class="control-description">
+                            Record an analyst observation or
+                            investigation finding.
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="finding-input">
+                                Finding
+                            </label>
+
+                            <textarea
+                                id="finding-input"
+                                placeholder="Enter investigation finding..."
+                            ></textarea>
+
+                        </div>
+
+                        <button
+                            class="button"
+                            onclick="addFinding()"
+                        >
+                            Record Finding
+                        </button>
+
+                        <div
+                            id="finding-message"
+                            class="form-message"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- RESPONSE ACTION -->
+
+                    <div class="control-card">
+
+                        <h3>
+                            Execute Response Action
+                        </h3>
+
+                        <div class="control-description">
+                            Record a defensive action taken
+                            during incident response.
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="action-type">
+                                Action
+                            </label>
+
+                            <select id="action-type">
+
+                                <option value="ISOLATE_HOST">
+                                    Isolate Host
+                                </option>
+
+                                <option value="DISABLE_ACCOUNT">
+                                    Disable Account
+                                </option>
+
+                                <option value="BLOCK_DOMAIN">
+                                    Block Domain
+                                </option>
+
+                                <option value="PRESERVE_EVIDENCE">
+                                    Preserve Evidence
+                                </option>
+
+                                <option value="ESCALATE">
+                                    Escalate
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="performed-by">
+                                Analyst
+                            </label>
+
+                            <input
+                                id="performed-by"
+                                type="text"
+                                placeholder="SOC Analyst"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="action-target">
+                                Target
+                            </label>
+
+                            <input
+                                id="action-target"
+                                type="text"
+                                placeholder="WS-FIN-042"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="action-reason">
+                                Reason
+                            </label>
+
+                            <textarea
+                                id="action-reason"
+                                placeholder="Explain why this action was performed..."
+                            ></textarea>
+
+                        </div>
+
+                        <button
+                            class="button button-danger"
+                            onclick="performResponseAction()"
+                        >
+                            Execute Action
+                        </button>
+
+                        <div
+                            id="action-message"
+                            class="form-message"
+                        ></div>
+
+                    </div>
+
+
+                    <!-- RECORDED INVESTIGATION -->
+
+                    <div class="control-card">
+
+                        <h3>
+                            Investigation Record
+                        </h3>
+
+                        <div class="control-description">
+                            Findings and response actions recorded
+                            against this incident.
+                        </div>
+
+                        <div id="investigation-record">
+
+                            <div class="empty-state">
+                                Loading investigation...
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -520,340 +1379,1530 @@
         </section>
 
 
-        <!-- ATTACK CHAIN -->
+        <!-- ==================================================
+             INCIDENT REPORT
+        =================================================== -->
 
         <section class="section">
 
             <div class="section-header">
 
-                <h3>Attack Chain</h3>
+                <div>
 
-                <span id="confidence"></span>
+                    <div class="section-title">
+                        Incident Report
+                    </div>
+
+                    <div
+                        class="section-meta"
+                        id="report-meta"
+                    >
+                        Generated from incident and investigation data
+                    </div>
+
+                </div>
+
+                <div class="report-header-actions">
+
+                    <button
+                        class="button button-secondary"
+                        onclick="loadIncidentReport()"
+                    >
+                        Refresh Report
+                    </button>
+
+                    <button
+                        class="button"
+                        onclick="exportMarkdownReport()"
+                    >
+                        Export Markdown
+                    </button>
+
+                </div>
 
             </div>
 
-            <div class="card">
+            <div class="section-body">
 
-                <div
-                    id="attack-chain"
-                    class="attack-chain">
+                <div id="incident-report">
+
+                    <div class="empty-state">
+                        Loading incident report...
+                    </div>
+
                 </div>
 
             </div>
 
         </section>
 
-    </div>
 
+        <!-- ==================================================
+             FOOTER
+        =================================================== -->
 
-    <div
-        id="error"
-        class="error"
-        style="display: none;">
-    </div>
+        <div class="footer">
 
-</main>
+            Cyber Incident Command Simulator
+            &nbsp;•&nbsp;
+            Synthetic Security Data
+            &nbsp;•&nbsp;
+            Defensive Training Environment
+
+        </div>
+
+    </main>
+
+</div>
 
 
 <script>
 
-const INCIDENT_ID = "INC-2026-0001";
+    // ======================================================
+    // Configuration
+    // ======================================================
+
+    const INCIDENT_ID = "INC-2026-0001";
 
 
-async function fetchJSON(url) {
+    // ======================================================
+    // API helper
+    // ======================================================
 
-    const response = await fetch(url);
+    async function fetchJSON(url, options = {}) {
 
-    if (!response.ok) {
-        throw new Error(
-            `Request failed: ${response.status}`
-        );
+        const response =
+            await fetch(url, options);
+
+        if (!response.ok) {
+
+            let message =
+                `HTTP ${response.status}`;
+
+            try {
+
+                const data =
+                    await response.json();
+
+                if (data.detail) {
+                    message = data.detail;
+                }
+
+            } catch (_) {
+                // Ignore JSON parsing errors.
+            }
+
+            throw new Error(message);
+        }
+
+        return response.json();
     }
 
-    return response.json();
-}
 
+    // ======================================================
+    // Utility
+    // ======================================================
 
-function formatTime(timestamp) {
+    function escapeHTML(value) {
 
-    const date = new Date(timestamp);
+        if (
+            value === null ||
+            value === undefined
+        ) {
+            return "";
+        }
 
-    return date.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit"
-    });
-}
-
-
-function severityClass(severity) {
-
-    const value = severity.toLowerCase();
-
-    if (value === "critical") {
-        return "critical";
+        return String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
     }
 
-    if (value === "high") {
-        return "high";
+
+    function formatTimestamp(timestamp) {
+
+        const date =
+            new Date(timestamp);
+
+        return date.toLocaleString();
     }
 
-    return "medium";
-}
+
+    function showMessage(
+        elementId,
+        message,
+        type
+    ) {
+
+        const element =
+            document.getElementById(
+                elementId
+            );
+
+        element.textContent =
+            message;
+
+        element.className =
+            `form-message ${type}`;
+    }
 
 
-async function loadIncident() {
+    // ======================================================
+    // Load incident
+    // ======================================================
 
-    try {
+    async function loadIncident() {
 
-        const [
-            incident,
-            detectionsData,
-            attackChain
-        ] = await Promise.all([
-
-            fetchJSON(
+        const incident =
+            await fetchJSON(
                 `/api/incidents/${INCIDENT_ID}`
-            ),
-
-            fetchJSON(
-                `/api/incidents/${INCIDENT_ID}/detections`
-            ),
-
-            fetchJSON(
-                `/api/incidents/${INCIDENT_ID}/attack-chain`
-            )
-
-        ]);
-
-
-        /*
-         * INCIDENT
-         */
+            );
 
         document.getElementById(
             "incident-name"
-        ).textContent = incident.name;
+        ).textContent =
+            incident.name;
 
         document.getElementById(
             "incident-id"
-        ).textContent = incident.incident_id;
+        ).textContent =
+            incident.incident_id;
 
         document.getElementById(
-            "severity"
-        ).textContent = incident.severity;
+            "severity-badge"
+        ).textContent =
+            incident.severity;
 
         document.getElementById(
-            "status"
-        ).textContent = incident.status;
+            "incident-status-badge"
+        ).textContent =
+            incident.status;
 
         document.getElementById(
             "affected-host"
-        ).textContent = incident.affected_host;
+        ).textContent =
+            incident.affected_host;
 
         document.getElementById(
             "affected-user"
-        ).textContent = incident.affected_user;
+        ).textContent =
+            incident.affected_user;
 
         document.getElementById(
             "event-count"
-        ).textContent = incident.events.length;
+        ).textContent =
+            incident.events.length;
+    }
+
+
+    // ======================================================
+    // Load events
+    // ======================================================
+
+    async function loadEvents() {
+
+        const data =
+            await fetchJSON(
+                `/api/incidents/${INCIDENT_ID}/events`
+            );
+
+        const timeline =
+            document.getElementById(
+                "timeline"
+            );
+
+        document.getElementById(
+            "timeline-meta"
+        ).textContent =
+            `${data.events.length} events`;
+
+        document.getElementById(
+            "event-count"
+        ).textContent =
+            data.events.length;
+
+        if (!data.events.length) {
+
+            timeline.innerHTML =
+                `<div class="empty-state">
+                    No security events.
+                </div>`;
+
+            return;
+        }
+
+        timeline.innerHTML =
+            data.events.map(event => {
+
+                return `
+                    <div class="timeline-item">
+
+                        <div class="timeline-time">
+                            ${escapeHTML(
+                                formatTimestamp(
+                                    event.timestamp
+                                )
+                            )}
+                        </div>
+
+                        <div class="timeline-marker"></div>
+
+                        <div>
+
+                            <div class="event-type">
+                                ${escapeHTML(
+                                    event.event_type
+                                )}
+                            </div>
+
+                            <div class="event-description">
+                                ${escapeHTML(
+                                    event.description
+                                )}
+                            </div>
+
+                            <div class="event-host">
+                                ${escapeHTML(
+                                    event.host
+                                )}
+                                ${
+                                    event.user
+                                        ? " • " +
+                                          escapeHTML(
+                                              event.user
+                                          )
+                                        : ""
+                                }
+                            </div>
+
+                        </div>
+
+                    </div>
+                `;
+
+            }).join("");
+    }
+
+
+    // ======================================================
+    // Load detections
+    // ======================================================
+
+    async function loadDetections() {
+
+        const data =
+            await fetchJSON(
+                `/api/incidents/${INCIDENT_ID}/detections`
+            );
+
+        const container =
+            document.getElementById(
+                "detections"
+            );
+
+        document.getElementById(
+            "detection-meta"
+        ).textContent =
+            `${data.detections.length} detections`;
 
         document.getElementById(
             "detection-count"
         ).textContent =
-            detectionsData.detections.length;
+            data.detections.length;
 
+        if (!data.detections.length) {
 
-        /*
-         * TIMELINE
-         */
+            container.innerHTML =
+                `<div class="empty-state">
+                    No detections generated.
+                </div>`;
 
-        const timeline =
-            document.getElementById("timeline");
+            return;
+        }
 
-        timeline.innerHTML = "";
+        container.innerHTML =
+            data.detections.map(
+                detection => {
 
-        incident.events.forEach(event => {
+                    const severity =
+                        detection.severity.toLowerCase();
 
-            const item =
-                document.createElement("div");
+                    return `
+                        <div class="detection">
 
-            item.className = "timeline-item";
+                            <div class="detection-top">
 
-            item.innerHTML = `
+                                <div class="detection-name">
+                                    ${escapeHTML(
+                                        detection.rule_name
+                                    )}
+                                </div>
 
-                <div class="timeline-dot"></div>
+                                <div
+                                    class="severity severity-${severity}"
+                                >
+                                    ${escapeHTML(
+                                        detection.severity
+                                    )}
+                                </div>
 
-                <div class="timeline-time">
-                    ${formatTime(event.timestamp)}
-                </div>
+                            </div>
 
-                <div class="timeline-event">
-                    ${event.event_type}
-                </div>
+                            <div class="detection-description">
+                                ${escapeHTML(
+                                    detection.description
+                                )}
+                            </div>
 
-                <div class="timeline-description">
-                    ${event.description}
-                </div>
+                            <div class="detection-event">
+                                ${escapeHTML(
+                                    detection.detection_id
+                                )}
+                                •
+                                ${escapeHTML(
+                                    detection.event_id
+                                )}
+                            </div>
 
-            `;
-
-            timeline.appendChild(item);
-
-        });
-
-
-        /*
-         * DETECTIONS
-         */
-
-        const detections =
-            document.getElementById("detections");
-
-        detections.innerHTML = "";
-
-        detectionsData.detections.forEach(
-            detection => {
-
-                const item =
-                    document.createElement("div");
-
-                item.className = "detection";
-
-                const severity =
-                    severityClass(
-                        detection.severity
-                    );
-
-                item.innerHTML = `
-
-                    <div
-                        class="detection-severity ${severity}">
-                        ${detection.severity}
-                    </div>
-
-                    <div>
-
-                        <div class="detection-name">
-                            ${detection.rule_name}
                         </div>
+                    `;
 
-                        <div class="detection-description">
-                            ${detection.description}
-                        </div>
-
-                    </div>
-
-                    <div class="event-id">
-                        ${detection.event_id}
-                    </div>
-
-                `;
-
-                detections.appendChild(item);
-
-            }
-        );
+                }
+            ).join("");
+    }
 
 
-        /*
-         * ATTACK CHAIN
-         */
+    // ======================================================
+    // Load attack chain
+    // ======================================================
+
+    async function loadAttackChain() {
+
+        const data =
+            await fetchJSON(
+                `/api/incidents/${INCIDENT_ID}/attack-chain`
+            );
+
+        const container =
+            document.getElementById(
+                "attack-chain"
+            );
+
+        document.getElementById(
+            "correlation-meta"
+        ).textContent =
+            `${data.stages.length} correlated stages`;
+
+        if (!data.stages.length) {
+
+            container.innerHTML =
+                `<div class="empty-state">
+                    No correlated attack stages.
+                </div>`;
+
+        } else {
+
+            container.innerHTML =
+                data.stages.map(
+                    (stage, index) => {
+
+                        return `
+                            <div class="attack-stage">
+
+                                <div class="stage-number">
+                                    STAGE ${index + 1}
+                                </div>
+
+                                <div class="stage-name">
+                                    ${escapeHTML(
+                                        stage.stage
+                                    )}
+                                </div>
+
+                                <div class="stage-event">
+                                    ${escapeHTML(
+                                        stage.event_id
+                                    )}
+                                    <br>
+                                    ${escapeHTML(
+                                        stage.detection_id
+                                    )}
+                                </div>
+
+                            </div>
+                        `;
+
+                    }
+                ).join("");
+        }
 
         document.getElementById(
             "confidence"
+        ).innerHTML =
+            `Correlation confidence:
+             <strong>${escapeHTML(
+                 data.confidence
+             )}</strong>`;
+    }
+
+
+    // ======================================================
+    // Load investigation
+    // ======================================================
+
+    async function loadInvestigation() {
+
+        const data =
+            await fetchJSON(
+                `/api/incidents/${INCIDENT_ID}/investigation`
+            );
+
+        document.getElementById(
+            "investigation-status"
         ).textContent =
-            `Correlation confidence: ${attackChain.confidence}`;
+            data.status;
+
+        document.getElementById(
+            "status-select"
+        ).value =
+            data.status;
+
+        renderInvestigationRecord(data);
+    }
 
 
-        const attackChainContainer =
-            document.getElementById("attack-chain");
+    // ======================================================
+    // Render investigation record
+    // ======================================================
 
-        attackChainContainer.innerHTML = "";
+    function renderInvestigationRecord(data) {
 
-        attackChain.stages.forEach(
-            (stage, index) => {
+        const container =
+            document.getElementById(
+                "investigation-record"
+            );
 
-                if (index > 0) {
+        let html = "";
 
-                    const arrow =
-                        document.createElement("div");
 
-                    arrow.className =
-                        "stage-arrow";
+        // Findings
 
-                    arrow.textContent = "→";
+        if (data.findings.length > 0) {
 
-                    attackChainContainer.appendChild(
-                        arrow
-                    );
+            html += `
+                <div class="record-list">
 
+                    <div class="record-label">
+                        Findings
+                    </div>
+            `;
+
+            data.findings.forEach(
+                (finding, index) => {
+
+                    html += `
+                        <div class="record">
+
+                            <div class="record-label">
+                                FINDING ${index + 1}
+                            </div>
+
+                            <div class="record-value">
+                                ${escapeHTML(
+                                    finding
+                                )}
+                            </div>
+
+                        </div>
+                    `;
                 }
+            );
+
+            html += `</div>`;
+
+        } else {
+
+            html += `
+                <div class="empty-state">
+                    No investigation findings recorded.
+                </div>
+            `;
+        }
 
 
-                const stageElement =
-                    document.createElement("div");
+        // Actions
 
-                stageElement.className =
-                    "attack-stage";
+        if (data.actions.length > 0) {
 
-                stageElement.innerHTML = `
+            html += `
+                <div class="record-list">
 
-                    <div class="stage-number">
-                        STAGE ${index + 1}
+                    <div class="record-label">
+                        Response Actions
                     </div>
+            `;
 
-                    <div class="stage-name">
-                        ${stage.stage}
-                    </div>
+            data.actions.forEach(
+                action => {
 
-                `;
+                    html += `
+                        <div class="record">
 
-                attackChainContainer.appendChild(
-                    stageElement
+                            <div class="action-record">
+
+                                <div class="action-type">
+                                    ${escapeHTML(
+                                        action.action_type
+                                    )}
+                                </div>
+
+                                <div class="action-details">
+
+                                    <div>
+                                        ${escapeHTML(
+                                            action.target
+                                        )}
+                                    </div>
+
+                                    <div class="action-meta">
+                                        ${escapeHTML(
+                                            action.performed_by
+                                        )}
+                                        •
+                                        ${escapeHTML(
+                                            action.status
+                                        )}
+                                        •
+                                        ${escapeHTML(
+                                            formatTimestamp(
+                                                action.performed_at
+                                            )
+                                        )}
+                                    </div>
+
+                                    <div class="action-meta">
+                                        ${escapeHTML(
+                                            action.reason
+                                        )}
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    `;
+                }
+            );
+
+            html += `</div>`;
+
+        } else {
+
+            html += `
+                <div
+                    class="empty-state"
+                    style="margin-top: 10px;"
+                >
+                    No response actions recorded.
+                </div>
+            `;
+        }
+
+        container.innerHTML =
+            html;
+    }
+
+
+    // ======================================================
+    // Load incident report
+    // ======================================================
+
+    async function loadIncidentReport() {
+
+        const container =
+            document.getElementById(
+                "incident-report"
+            );
+
+        const meta =
+            document.getElementById(
+                "report-meta"
+            );
+
+        container.innerHTML =
+            `<div class="empty-state">
+                Generating incident report...
+            </div>`;
+
+        try {
+
+            const report =
+                await fetchJSON(
+                    `/api/incidents/${INCIDENT_ID}/report`
                 );
 
-            }
-        );
+
+            const stages =
+                report.attack_stages || [];
+
+            const findings =
+                report.findings || [];
+
+            const actions =
+                report.response_actions || [];
 
 
-        /*
-         * DISPLAY APPLICATION
-         */
+            const stagesHTML =
+                stages.length
+                    ? `
+                        <ol class="report-list">
+                            ${stages.map(stage => `
+                                <li>
+                                    ${escapeHTML(stage)}
+                                </li>
+                            `).join("")}
+                        </ol>
+                    `
+                    : `
+                        <div class="report-empty">
+                            No correlated attack stages recorded.
+                        </div>
+                    `;
 
-        document.getElementById(
-            "loading"
-        ).style.display = "none";
 
-        document.getElementById(
-            "content"
-        ).style.display = "block";
+            const findingsHTML =
+                findings.length
+                    ? `
+                        <ul class="report-list">
+                            ${findings.map(finding => `
+                                <li>
+                                    ${escapeHTML(finding)}
+                                </li>
+                            `).join("")}
+                        </ul>
+                    `
+                    : `
+                        <div class="report-empty">
+                            No investigation findings recorded.
+                        </div>
+                    `;
 
+
+            const actionsHTML =
+                actions.length
+                    ? `
+                        <ul class="report-list">
+                            ${actions.map(action => `
+                                <li>
+                                    ${escapeHTML(action)}
+                                </li>
+                            `).join("")}
+                        </ul>
+                    `
+                    : `
+                        <div class="report-empty">
+                            No response actions recorded.
+                        </div>
+                    `;
+
+
+            container.innerHTML = `
+
+                <div class="report-grid">
+
+                    <div class="report-stat">
+
+                        <div class="report-stat-label">
+                            Incident
+                        </div>
+
+                        <div class="report-stat-value mono">
+                            ${escapeHTML(
+                                report.incident_id
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div class="report-stat">
+
+                        <div class="report-stat-label">
+                            Severity
+                        </div>
+
+                        <div class="report-stat-value">
+                            ${escapeHTML(
+                                report.severity
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div class="report-stat">
+
+                        <div class="report-stat-label">
+                            Status
+                        </div>
+
+                        <div class="report-stat-value">
+                            ${escapeHTML(
+                                report.status
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div class="report-stat">
+
+                        <div class="report-stat-label">
+                            Analyst
+                        </div>
+
+                        <div class="report-stat-value">
+                            ${
+                                report.analyst
+                                    ? escapeHTML(
+                                        report.analyst
+                                      )
+                                    : "Not assigned"
+                            }
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="report-block">
+
+                    <div class="report-block-title">
+                        Executive Summary
+                    </div>
+
+                    <div class="report-summary">
+                        ${escapeHTML(
+                            report.executive_summary
+                        )}
+                    </div>
+
+                </div>
+
+
+                <div class="report-two-column">
+
+                    <div class="report-block">
+
+                        <div class="report-block-title">
+                            Incident Details
+                        </div>
+
+                        <ul class="report-list">
+
+                            <li>
+                                Name:
+                                ${escapeHTML(
+                                    report.incident_name
+                                )}
+                            </li>
+
+                            <li>
+                                Affected Host:
+                                ${escapeHTML(
+                                    report.affected_host
+                                )}
+                            </li>
+
+                            <li>
+                                Affected User:
+                                ${escapeHTML(
+                                    report.affected_user
+                                )}
+                            </li>
+
+                            <li>
+                                Attack Type:
+                                ${escapeHTML(
+                                    report.attack_type
+                                )}
+                            </li>
+
+                            <li>
+                                Correlation Confidence:
+                                ${escapeHTML(
+                                    report.confidence
+                                )}
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="report-block">
+
+                        <div class="report-block-title">
+                            Security Activity
+                        </div>
+
+                        <ul class="report-list">
+
+                            <li>
+                                Security Events:
+                                ${escapeHTML(
+                                    report.event_count
+                                )}
+                            </li>
+
+                            <li>
+                                Detections:
+                                ${escapeHTML(
+                                    report.detection_count
+                                )}
+                            </li>
+
+                            <li>
+                                Attack Stages:
+                                ${escapeHTML(
+                                    stages.length
+                                )}
+                            </li>
+
+                            <li>
+                                Findings:
+                                ${escapeHTML(
+                                    findings.length
+                                )}
+                            </li>
+
+                            <li>
+                                Response Actions:
+                                ${escapeHTML(
+                                    actions.length
+                                )}
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+                <div class="report-block">
+
+                    <div class="report-block-title">
+                        Attack Chain
+                    </div>
+
+                    ${stagesHTML}
+
+                </div>
+
+
+                <div class="report-two-column">
+
+                    <div class="report-block">
+
+                        <div class="report-block-title">
+                            Investigation Findings
+                        </div>
+
+                        ${findingsHTML}
+
+                    </div>
+
+
+                    <div class="report-block">
+
+                        <div class="report-block-title">
+                            Response Actions
+                        </div>
+
+                        ${actionsHTML}
+
+                    </div>
+
+                </div>
+
+
+                <div class="report-footer">
+
+                    Report generated:
+                    ${escapeHTML(
+                        formatTimestamp(
+                            report.generated_at
+                        )
+                    )}
+
+                </div>
+            `;
+
+
+            meta.textContent =
+                `Report generated ${formatTimestamp(
+                    report.generated_at
+                )}`;
+
+        } catch (error) {
+
+            container.innerHTML =
+                `<div class="empty-state">
+                    Unable to generate incident report:
+                    ${escapeHTML(
+                        error.message
+                    )}
+                </div>`;
+
+            meta.textContent =
+                "Report generation failed.";
+
+            console.error(
+                "Incident report error:",
+                error
+            );
+        }
     }
 
-    catch (error) {
 
-        console.error(error);
+    // ======================================================
+    // EXPORT INCIDENT REPORT AS MARKDOWN
+    // ======================================================
 
-        document.getElementById(
-            "loading"
-        ).style.display = "none";
+    async function exportMarkdownReport() {
 
-        const errorElement =
-            document.getElementById("error");
+        try {
 
-        errorElement.textContent =
-            `Unable to load incident data: ${error.message}`;
+            const report =
+                await fetchJSON(
+                    `/api/incidents/${INCIDENT_ID}/report`
+                );
 
-        errorElement.style.display = "block";
 
+            const stages =
+                report.attack_stages || [];
+
+            const findings =
+                report.findings || [];
+
+            const actions =
+                report.response_actions || [];
+
+
+            // ----------------------------------------------
+            // Attack chain
+            // ----------------------------------------------
+
+            const attackChain =
+                stages.length > 0
+                    ? stages
+                        .map(
+                            (stage, index) =>
+                                `${index + 1}. ${stage}`
+                        )
+                        .join("\n")
+                    : "No correlated attack stages recorded.";
+
+
+            // ----------------------------------------------
+            // Findings
+            // ----------------------------------------------
+
+            const findingsMarkdown =
+                findings.length > 0
+                    ? findings
+                        .map(
+                            finding =>
+                                `- ${finding}`
+                        )
+                        .join("\n")
+                    : "- No investigation findings recorded.";
+
+
+            // ----------------------------------------------
+            // Response actions
+            // ----------------------------------------------
+
+            const actionsMarkdown =
+                actions.length > 0
+                    ? actions
+                        .map(
+                            action =>
+                                `- ${action}`
+                        )
+                        .join("\n")
+                    : "- No response actions recorded.";
+
+
+            // ----------------------------------------------
+            // Analyst
+            // ----------------------------------------------
+
+            const analyst =
+                report.analyst ||
+                "Not assigned";
+
+
+            // ----------------------------------------------
+            // Generated timestamp
+            // ----------------------------------------------
+
+            const generatedAt =
+                report.generated_at ||
+                new Date().toISOString();
+
+
+            // ----------------------------------------------
+            // Markdown document
+            // ----------------------------------------------
+
+            const markdown = `# Cyber Incident Report
+
+## Incident Information
+
+| Field | Value |
+|---|---|
+| Incident ID | \`${report.incident_id}\` |
+| Incident Name | ${report.incident_name} |
+| Severity | **${report.severity}** |
+| Status | **${report.status}** |
+| Affected Host | \`${report.affected_host}\` |
+| Affected User | \`${report.affected_user}\` |
+| Analyst | ${analyst} |
+| Generated At | ${generatedAt} |
+
+---
+
+## Executive Summary
+
+${report.executive_summary}
+
+---
+
+## Security Activity
+
+| Metric | Value |
+|---|---:|
+| Security Events | ${report.event_count} |
+| Detections | ${report.detection_count} |
+| Attack Stages | ${stages.length} |
+| Investigation Findings | ${findings.length} |
+| Response Actions | ${actions.length} |
+
+---
+
+## Attack Analysis
+
+**Attack Type:** ${report.attack_type}
+
+**Correlation Confidence:** ${report.confidence}
+
+### Attack Chain
+
+${attackChain}
+
+---
+
+## Investigation Findings
+
+${findingsMarkdown}
+
+---
+
+## Response Actions
+
+${actionsMarkdown}
+
+---
+
+## Incident Assessment
+
+The incident investigation recorded the security events,
+detections, correlated attack stages, investigation findings,
+and response actions available at the time this report was generated.
+
+---
+
+## Report Metadata
+
+- **Incident ID:** \`${report.incident_id}\`
+- **Generated:** \`${generatedAt}\`
+- **System:** Cyber Incident Command Simulator
+- **Environment:** Synthetic Defensive Training Environment
+
+---
+
+*This report was generated automatically by the Cyber Incident Command Simulator.*
+`;
+
+
+            // ----------------------------------------------
+            // Create Markdown file
+            // ----------------------------------------------
+
+            const blob =
+                new Blob(
+                    [markdown],
+                    {
+                        type:
+                            "text/markdown;charset=utf-8"
+                    }
+                );
+
+
+            const url =
+                URL.createObjectURL(blob);
+
+
+            const link =
+                document.createElement("a");
+
+
+            link.href =
+                url;
+
+
+            link.download =
+                `${report.incident_id}.md`;
+
+
+            document.body.appendChild(
+                link
+            );
+
+
+            link.click();
+
+
+            document.body.removeChild(
+                link
+            );
+
+
+            URL.revokeObjectURL(
+                url
+            );
+
+
+            console.log(
+                `Markdown report exported: ${report.incident_id}.md`
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Markdown export failed:",
+                error
+            );
+
+            alert(
+                `Unable to export report: ${error.message}`
+            );
+        }
     }
 
-}
+
+    // ======================================================
+    // Update investigation status
+    // ======================================================
+
+    async function updateInvestigationStatus() {
+
+        const status =
+            document.getElementById(
+                "status-select"
+            ).value;
+
+        try {
+
+            const data =
+                await fetchJSON(
+                    `/api/incidents/${INCIDENT_ID}/investigation/status`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            status: status
+                        })
+                    }
+                );
 
 
-loadIncident();
+            document.getElementById(
+                "investigation-status"
+            ).textContent =
+                data.status;
+
+            renderInvestigationRecord(data);
+
+            showMessage(
+                "status-message",
+                `Investigation status updated to ${data.status}.`,
+                "success"
+            );
+
+
+            // Refresh report because the
+            // investigation status changed.
+            await loadIncidentReport();
+
+        } catch (error) {
+
+            showMessage(
+                "status-message",
+                error.message,
+                "error"
+            );
+        }
+    }
+
+
+    // ======================================================
+    // Add finding
+    // ======================================================
+
+    async function addFinding() {
+
+        const input =
+            document.getElementById(
+                "finding-input"
+            );
+
+        const finding =
+            input.value.trim();
+
+        if (!finding) {
+
+            showMessage(
+                "finding-message",
+                "Finding cannot be empty.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        try {
+
+            const data =
+                await fetchJSON(
+                    `/api/incidents/${INCIDENT_ID}/investigation/findings`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            finding: finding
+                        })
+                    }
+                );
+
+
+            input.value = "";
+
+            renderInvestigationRecord(data);
+
+            showMessage(
+                "finding-message",
+                "Investigation finding recorded.",
+                "success"
+            );
+
+
+            // Refresh report so the finding
+            // immediately appears.
+            await loadIncidentReport();
+
+        } catch (error) {
+
+            showMessage(
+                "finding-message",
+                error.message,
+                "error"
+            );
+        }
+    }
+
+
+    // ======================================================
+    // Execute response action
+    // ======================================================
+
+    async function performResponseAction() {
+
+        const actionType =
+            document.getElementById(
+                "action-type"
+            ).value;
+
+        const performedBy =
+            document.getElementById(
+                "performed-by"
+            ).value.trim();
+
+        const target =
+            document.getElementById(
+                "action-target"
+            ).value.trim();
+
+        const reason =
+            document.getElementById(
+                "action-reason"
+            ).value.trim();
+
+
+        if (!performedBy) {
+
+            showMessage(
+                "action-message",
+                "Analyst name is required.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (!target) {
+
+            showMessage(
+                "action-message",
+                "Target is required.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (!reason) {
+
+            showMessage(
+                "action-message",
+                "Reason is required.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        try {
+
+            const data =
+                await fetchJSON(
+                    `/api/incidents/${INCIDENT_ID}/investigation/actions`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            action_type:
+                                actionType,
+
+                            performed_by:
+                                performedBy,
+
+                            target:
+                                target,
+
+                            reason:
+                                reason
+
+                        })
+                    }
+                );
+
+
+            renderInvestigationRecord(data);
+
+
+            showMessage(
+                "action-message",
+                `${actionType} action recorded successfully.`,
+                "success"
+            );
+
+
+            document.getElementById(
+                "action-reason"
+            ).value = "";
+
+
+            // Refresh report so the response
+            // action immediately appears.
+            await loadIncidentReport();
+
+        } catch (error) {
+
+            showMessage(
+                "action-message",
+                error.message,
+                "error"
+            );
+        }
+    }
+
+
+    // ======================================================
+    // Initial application load
+    // ======================================================
+
+    async function loadDashboard() {
+
+        try {
+
+            await Promise.all([
+
+                loadIncident(),
+
+                loadEvents(),
+
+                loadDetections(),
+
+                loadAttackChain(),
+
+                loadInvestigation(),
+
+                loadIncidentReport()
+
+            ]);
+
+        } catch (error) {
+
+            console.error(
+                "Dashboard loading error:",
+                error
+            );
+        }
+    }
+
+
+    // ======================================================
+    // Start application
+    // ======================================================
+
+    loadDashboard();
 
 </script>
 
