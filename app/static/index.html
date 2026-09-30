@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cyber Incident Command Center</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b1120;
+            color: #e5e7eb;
+        }
+
+        .header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            background: #111827;
+            border-bottom: 1px solid #1f2937;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .brand h1 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .brand p {
+            margin: 4px 0 0;
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .system-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #9ca3af;
+            font-size: 13px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        .main {
+            max-width: 1500px;
+            margin: auto;
+            padding: 30px 32px 50px;
+        }
+
+        .incident-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .incident-title h2 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .incident-title p {
+            margin: 6px 0 0;
+            color: #9ca3af;
+        }
+
+        .badges {
+            display: flex;
+            gap: 10px;
+        }
+
+        .badge {
+            padding: 7px 13px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .badge-high {
+            background: #7f1d1d;
+            color: #fecaca;
+        }
+
+        .badge-status {
+            background: #1e3a8a;
+            color: #bfdbfe;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        .card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            padding: 22px;
+        }
+
+        .metric-label {
+            color: #6b7280;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+        }
+
+        .metric-value {
+            margin-top: 9px;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 22px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .section-header h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .section-header span {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background: #374151;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 24px 20px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -22px;
+            top: 4px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #2563eb;
+            border: 2px solid #0b1120;
+        }
+
+        .timeline-time {
+            color: #60a5fa;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .timeline-event {
+            margin-top: 4px;
+            font-weight: bold;
+        }
+
+        .timeline-description {
+            margin-top: 4px;
+            color: #9ca3af;
+            font-size: 13px;
+        }
+
+        .detections {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .detection {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            align-items: center;
+            gap: 15px;
+            padding: 14px;
+            border: 1px solid #1f2937;
+            border-radius: 7px;
+            background: #0f172a;
+        }
+
+        .detection-severity {
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .critical {
+            color: #f87171;
+        }
+
+        .high {
+            color: #fb923c;
+        }
+
+        .medium {
+            color: #facc15;
+        }
+
+        .detection-name {
+            font-weight: bold;
+        }
+
+        .detection-description {
+            margin-top: 4px;
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        .event-id {
+            color: #6b7280;
+            font-size: 11px;
+        }
+
+        .attack-chain {
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .attack-stage {
+            min-width: 155px;
+            padding: 15px;
+            background: #0f172a;
+            border: 1px solid #263244;
+            border-radius: 8px;
+        }
+
+        .stage-number {
+            color: #60a5fa;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .stage-name {
+            margin-top: 7px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .stage-arrow {
+            padding: 0 10px;
+            color: #4b5563;
+            font-size: 20px;
+        }
+
+        .loading {
+            padding: 60px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        .error {
+            padding: 20px;
+            border: 1px solid #7f1d1d;
+            background: #450a0a;
+            border-radius: 8px;
+            color: #fecaca;
+        }
+
+        @media (max-width: 900px) {
+            .metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .incident-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 0 16px;
+            }
+
+            .main {
+                padding: 20px 16px;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .detection {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="brand">
+
+        <div class="brand-icon">C</div>
+
+        <div>
+            <h1>Cyber Incident Command Center</h1>
+            <p>Security Operations & Incident Response</p>
+        </div>
+
+    </div>
+
+    <div class="system-status">
+        <span class="status-dot"></span>
+        Simulator Operational
+    </div>
+
+</header>
+
+
+<main class="main">
+
+    <div id="loading" class="loading">
+        Loading incident data...
+    </div>
+
+
+    <div id="content" style="display: none;">
+
+        <!-- INCIDENT -->
+
+        <div class="incident-header">
+
+            <div class="incident-title">
+
+                <h2 id="incident-name"></h2>
+
+                <p id="incident-id"></p>
+
+            </div>
+
+            <div class="badges">
+
+                <span
+                    id="severity"
+                    class="badge badge-high">
+                </span>
+
+                <span
+                    id="status"
+                    class="badge badge-status">
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- METRICS -->
+
+        <div class="metrics">
+
+            <div class="card">
+
+                <div class="metric-label">
+                    Affected Host
+                </div>
+
+                <div
+                    id="affected-host"
+                    class="metric-value">
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="metric-label">
+                    Affected User
+                </div>
+
+                <div
+                    id="affected-user"
+                    class="metric-value">
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="metric-label">
+                    Security Events
+                </div>
+
+                <div
+                    id="event-count"
+                    class="metric-value">
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="metric-label">
+                    Detections
+                </div>
+
+                <div
+                    id="detection-count"
+                    class="metric-value">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TIMELINE -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h3>Incident Timeline</h3>
+
+                <span>
+                    Chronological security events
+                </span>
+
+            </div>
+
+            <div class="card">
+
+                <div
+                    id="timeline"
+                    class="timeline">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DETECTIONS -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h3>Security Detections</h3>
+
+                <span>
+                    Detection engine output
+                </span>
+
+            </div>
+
+            <div class="card">
+
+                <div
+                    id="detections"
+                    class="detections">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ATTACK CHAIN -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <h3>Attack Chain</h3>
+
+                <span id="confidence"></span>
+
+            </div>
+
+            <div class="card">
+
+                <div
+                    id="attack-chain"
+                    class="attack-chain">
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <div
+        id="error"
+        class="error"
+        style="display: none;">
+    </div>
+
+</main>
+
+
+<script>
+
+const INCIDENT_ID = "INC-2026-0001";
+
+
+async function fetchJSON(url) {
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(
+            `Request failed: ${response.status}`
+        );
+    }
+
+    return response.json();
+}
+
+
+function formatTime(timestamp) {
+
+    const date = new Date(timestamp);
+
+    return date.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    });
+}
+
+
+function severityClass(severity) {
+
+    const value = severity.toLowerCase();
+
+    if (value === "critical") {
+        return "critical";
+    }
+
+    if (value === "high") {
+        return "high";
+    }
+
+    return "medium";
+}
+
+
+async function loadIncident() {
+
+    try {
+
+        const [
+            incident,
+            detectionsData,
+            attackChain
+        ] = await Promise.all([
+
+            fetchJSON(
+                `/api/incidents/${INCIDENT_ID}`
+            ),
+
+            fetchJSON(
+                `/api/incidents/${INCIDENT_ID}/detections`
+            ),
+
+            fetchJSON(
+                `/api/incidents/${INCIDENT_ID}/attack-chain`
+            )
+
+        ]);
+
+
+        /*
+         * INCIDENT
+         */
+
+        document.getElementById(
+            "incident-name"
+        ).textContent = incident.name;
+
+        document.getElementById(
+            "incident-id"
+        ).textContent = incident.incident_id;
+
+        document.getElementById(
+            "severity"
+        ).textContent = incident.severity;
+
+        document.getElementById(
+            "status"
+        ).textContent = incident.status;
+
+        document.getElementById(
+            "affected-host"
+        ).textContent = incident.affected_host;
+
+        document.getElementById(
+            "affected-user"
+        ).textContent = incident.affected_user;
+
+        document.getElementById(
+            "event-count"
+        ).textContent = incident.events.length;
+
+        document.getElementById(
+            "detection-count"
+        ).textContent =
+            detectionsData.detections.length;
+
+
+        /*
+         * TIMELINE
+         */
+
+        const timeline =
+            document.getElementById("timeline");
+
+        timeline.innerHTML = "";
+
+        incident.events.forEach(event => {
+
+            const item =
+                document.createElement("div");
+
+            item.className = "timeline-item";
+
+            item.innerHTML = `
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-time">
+                    ${formatTime(event.timestamp)}
+                </div>
+
+                <div class="timeline-event">
+                    ${event.event_type}
+                </div>
+
+                <div class="timeline-description">
+                    ${event.description}
+                </div>
+
+            `;
+
+            timeline.appendChild(item);
+
+        });
+
+
+        /*
+         * DETECTIONS
+         */
+
+        const detections =
+            document.getElementById("detections");
+
+        detections.innerHTML = "";
+
+        detectionsData.detections.forEach(
+            detection => {
+
+                const item =
+                    document.createElement("div");
+
+                item.className = "detection";
+
+                const severity =
+                    severityClass(
+                        detection.severity
+                    );
+
+                item.innerHTML = `
+
+                    <div
+                        class="detection-severity ${severity}">
+                        ${detection.severity}
+                    </div>
+
+                    <div>
+
+                        <div class="detection-name">
+                            ${detection.rule_name}
+                        </div>
+
+                        <div class="detection-description">
+                            ${detection.description}
+                        </div>
+
+                    </div>
+
+                    <div class="event-id">
+                        ${detection.event_id}
+                    </div>
+
+                `;
+
+                detections.appendChild(item);
+
+            }
+        );
+
+
+        /*
+         * ATTACK CHAIN
+         */
+
+        document.getElementById(
+            "confidence"
+        ).textContent =
+            `Correlation confidence: ${attackChain.confidence}`;
+
+
+        const attackChainContainer =
+            document.getElementById("attack-chain");
+
+        attackChainContainer.innerHTML = "";
+
+        attackChain.stages.forEach(
+            (stage, index) => {
+
+                if (index > 0) {
+
+                    const arrow =
+                        document.createElement("div");
+
+                    arrow.className =
+                        "stage-arrow";
+
+                    arrow.textContent = "→";
+
+                    attackChainContainer.appendChild(
+                        arrow
+                    );
+
+                }
+
+
+                const stageElement =
+                    document.createElement("div");
+
+                stageElement.className =
+                    "attack-stage";
+
+                stageElement.innerHTML = `
+
+                    <div class="stage-number">
+                        STAGE ${index + 1}
+                    </div>
+
+                    <div class="stage-name">
+                        ${stage.stage}
+                    </div>
+
+                `;
+
+                attackChainContainer.appendChild(
+                    stageElement
+                );
+
+            }
+        );
+
+
+        /*
+         * DISPLAY APPLICATION
+         */
+
+        document.getElementById(
+            "loading"
+        ).style.display = "none";
+
+        document.getElementById(
+            "content"
+        ).style.display = "block";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        document.getElementById(
+            "loading"
+        ).style.display = "none";
+
+        const errorElement =
+            document.getElementById("error");
+
+        errorElement.textContent =
+            `Unable to load incident data: ${error.message}`;
+
+        errorElement.style.display = "block";
+
+    }
+
+}
+
+
+loadIncident();
+
+</script>
+
+</body>
+</html>

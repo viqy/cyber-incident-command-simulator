@@ -93,7 +93,8 @@ def test_api_root():
     response = client.get("/")
 
     assert response.status_code == 200
-    assert response.json()["status"] == "operational"
+    assert "Cyber Incident Command Center" in response.text
+    assert "text/html" in response.headers["content-type"]
 
 
 def test_api_health():
